@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="reminderBgNotice">#FFf89042</color>
+    <color name="reminderBgError">#FFf44336</color>
+    <color name="reminderBgNormal">#FF62cbd6</color>
+
+</resources>
