@@ -8,4 +8,10 @@
     <color name="reminderBgError">#FFf44336</color>
     <color name="reminderBgNormal">#FF62cbd6</color>
 
+    <color name="grey">#6d6d6d</color>
+    <color name="trans_red">#aaea2000</color>
+
+    <color name="theme_orange">#FF9100</color>
+    <color name="layer_color">#19000000</color>
+
 </resources>

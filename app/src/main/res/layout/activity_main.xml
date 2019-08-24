@@ -1,19 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".LoginActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:background="#FFFFFF">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
+    <ImageView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/user_phone"
+            android:src="@drawable/logo"
+            android:layout_width="128dp"
+            android:layout_height="128dp"/>
+
+
+    <EditText
+            android:hint="请输入用户名"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:theme="@style/MyEditText"
+            app:layout_constraintBottom_toTopOf="@id/user_pass"
+            android:id="@+id/user_phone"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content" />
+
+    <EditText
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:theme="@style/MyEditText"
+            android:shadowColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/user_ip"
+            android:id="@+id/user_pass"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content" />
+
+    <EditText
+            android:layout_marginBottom="80dp"
+            android:hint="请输入域"
+            android:inputType="textPassword"
+            android:theme="@style/MyEditText"
+            android:shadowColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/login_button"
+            android:id="@+id/user_ip"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content" />
+
+
+    <Button
+            android:textColor="#EEEEEE"
+            android:text="SIP登录"
+            android:background="@drawable/bt_shape"
+            android:id="@+id/login_button"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_width="150dp"
+            android:layout_height="36dp" />
+
+
 
 </android.support.constraint.ConstraintLayout>

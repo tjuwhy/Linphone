@@ -1,6 +1,7 @@
 package com.wyty.callme
 
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -9,12 +10,15 @@ import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.PERMISSION_BOTH
 import com.wyty.callme.commons.SimpleRegistrationCallback
 import com.wyty.callme.commons.utils.SnackBarUtil
+import com.wyty.callme.commons.view.enableLightStatusBarMode
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        enableLightStatusBarMode(true)
+        window.statusBarColor = Color.parseColor("#FFFFFF")
         if (!LinphoneService.isReady) {
             Linphone.apply {
                 startService(this@LoginActivity)
