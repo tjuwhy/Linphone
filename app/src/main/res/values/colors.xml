@@ -10,6 +10,7 @@
 
     <color name="grey">#6d6d6d</color>
     <color name="trans_red">#aaea2000</color>
+    <color name="green">#00E676</color>
 
     <color name="theme_orange">#FF9100</color>
     <color name="layer_color">#19000000</color>

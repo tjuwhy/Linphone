@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".HomeActivity"
+                                             android:background="#EDF0F0F0">
+
+    <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="60dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_bar"/>
+
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/dial_fab"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+            android:scaleType="centerInside"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/dial_pad"
+            android:backgroundTint="@color/green"
+            app:elevation="5dp"
+            app:pressedTranslationZ="12dp"
+            app:fabSize="normal"
+            app:borderWidth="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+    />
+
+    <android.support.constraint.ConstraintLayout
+            android:background="#Fbfbfb"
+            android:id="@+id/bottom_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+        <ImageView
+                android:id="@+id/tab_quick"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:paddingTop="6dp"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tab_history"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/kuaisu" />
+
+        <TextView
+                android:id="@+id/kuaisu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/tab_quick"
+                app:layout_constraintEnd_toEndOf="@id/tab_quick"
+                app:layout_constraintTop_toBottomOf="@id/tab_quick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="快速拨号" />
+
+        <ImageView
+                android:id="@+id/tab_history"
+                app:layout_constraintEnd_toStartOf="@id/tab_contact"
+                app:layout_constraintStart_toEndOf="@id/tab_quick"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:paddingTop="6dp"
+                android:paddingStart="6dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:paddingEnd="6dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tonghuajilu" />
+
+        <TextView
+                android:id="@+id/tonghuajilu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/tab_history"
+                app:layout_constraintEnd_toEndOf="@id/tab_history"
+                app:layout_constraintTop_toBottomOf="@id/tab_history"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="通话记录" />
+
+        <ImageView
+                android:id="@+id/tab_contact"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:paddingTop="6dp"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tab_history"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tongxunlu" />
+
+        <TextView
+                android:id="@+id/tongxunlu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/tab_contact"
+                app:layout_constraintEnd_toEndOf="@id/tab_contact"
+                app:layout_constraintTop_toBottomOf="@id/tab_contact"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="通讯录" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

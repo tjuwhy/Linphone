@@ -55,7 +55,7 @@
     <Button
             android:textColor="#EEEEEE"
             android:text="SIP登录"
-            android:background="@drawable/bt_shape"
+            android:background="@drawable/orange_shape"
             android:id="@+id/login_button"
             android:layout_marginBottom="100dp"
             app:layout_constraintEnd_toEndOf="parent"
