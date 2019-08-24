@@ -3,6 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.wyty.callme">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.CAMERA"/> <!-- 语音通话权限 -->
@@ -21,11 +22,17 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".CallActivity">
+        </activity>
         <activity android:name=".DialActivity">
         </activity>
         <activity android:name=".HomeActivity">
         </activity>
-        <activity android:name=".TestActivity">
+        <activity android:name=".LauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <service
@@ -33,18 +40,8 @@
                 android:enabled="true"
                 android:exported="true">
         </service>
-        <service
-                android:name=".me.LinPhoneService"
-                android:enabled="true"
-                android:exported="true">
-        </service>
 
         <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 
