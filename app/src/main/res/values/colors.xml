@@ -14,5 +14,10 @@
 
     <color name="theme_orange">#FF9100</color>
     <color name="layer_color">#19000000</color>
+    
+    <color name="orange">#FF9100</color>
+    <color name="red">#FF3D00</color>
+    <color name="blue">#00E5FF</color>
+    <color name="purple">#651FFF</color>
 
 </resources>

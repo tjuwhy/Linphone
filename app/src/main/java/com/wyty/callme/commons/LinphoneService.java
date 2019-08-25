@@ -72,6 +72,7 @@ public class LinphoneService extends Service {
         mCoreListener = new CoreListenerStub() {
             @Override
             public void onCallStateChanged(Core core, Call call, Call.State state, String message) {
+                Log.d("call",state.toString()+"  "+message);
                 Toast.makeText(LinphoneService.this, message, Toast.LENGTH_SHORT).show();
 
                 if (state == Call.State.IncomingReceived) {

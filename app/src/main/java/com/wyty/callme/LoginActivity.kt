@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
 import com.wyty.callme.commons.view.enableLightStatusBarMode
@@ -29,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
                 cstate: RegistrationState?,
                 message: String?
             ) {
+                Log.i("cstate",cstate.toString() + "  " + message)
                 when (cstate) {
                     RegistrationState.Ok->{
                         startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
@@ -38,6 +40,9 @@ class LoginActivity : AppCompatActivity() {
                     }
                     RegistrationState.Progress -> {
                         SnackBarUtil.normal(this@LoginActivity,"登录ing...")
+                    }
+                    else -> {
+
                     }
                 }
             }

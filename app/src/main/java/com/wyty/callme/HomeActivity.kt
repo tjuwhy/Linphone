@@ -3,9 +3,9 @@ package com.wyty.callme
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.wyty.callme.contact.ContactFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.SupportFragment
@@ -29,6 +29,9 @@ class HomeActivity : SupportActivity() {
         dial_fab.setOnClickListener {
             startActivity(Intent(this@HomeActivity,DialActivity::class.java))
         }
+
+        add_person.setOnClickListener {  }
+        search.setOnClickListener {  }
 
         if (savedInstanceState == null) {
             fragments[FIRST] = QuickFragment()
