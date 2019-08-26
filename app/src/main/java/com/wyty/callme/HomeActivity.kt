@@ -5,7 +5,9 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import com.wyty.callme.contact.ContactBean
 import com.wyty.callme.contact.ContactFragment
+import com.wyty.callme.contact.ContactsLiveData
 import kotlinx.android.synthetic.main.activity_home.*
 import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.SupportFragment
@@ -30,7 +32,9 @@ class HomeActivity : SupportActivity() {
             startActivity(Intent(this@HomeActivity,DialActivity::class.java))
         }
 
-        add_person.setOnClickListener {  }
+        add_person.setOnClickListener {
+            ContactsLiveData.add(ContactBean("大舅","123","",0))
+        }
         search.setOnClickListener {  }
 
         if (savedInstanceState == null) {

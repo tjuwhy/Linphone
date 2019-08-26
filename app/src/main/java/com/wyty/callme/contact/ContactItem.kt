@@ -1,5 +1,7 @@
 package com.wyty.callme.contact
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -21,7 +23,19 @@ class ContactItem(val context: Context, val isFirst: Boolean, val firstLetter: C
             holder as ViewHolder
             item as ContactItem
             holder.apply {
-                itemView.setOnClickListener {  }
+                itemView.setOnLongClickListener {
+                    val builder = AlertDialog.Builder(item.context).also {
+                        it.apply {
+                            setTitle("确定要删除联系人 ${item.contactBean.name} 吗？")
+                            setPositiveButton("确定") { _, _ ->
+                                ContactsLiveData.remove(item.contactBean)
+                            }
+                            setNegativeButton("取消") { _, _ -> }
+                        }
+                    }
+                    builder.show()
+                    true
+                }
                 if (item.isFirst) {
                     firstLetter.text = item.firstLetter.toString()
                     firstLetter.visibility = View.VISIBLE
@@ -59,3 +73,6 @@ class ContactItem(val context: Context, val isFirst: Boolean, val firstLetter: C
     ) : RecyclerView.ViewHolder(itemView)
 
 }
+
+fun MutableList<Item>.contact(context: Context, contactBean: ContactBean, firstLetter: Char, isFirst: Boolean) =
+    add(ContactItem(context, isFirst, firstLetter, contactBean))

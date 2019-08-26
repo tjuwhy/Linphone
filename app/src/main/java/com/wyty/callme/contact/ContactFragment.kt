@@ -1,8 +1,10 @@
 package com.wyty.callme.contact
 
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +12,9 @@ import android.view.ViewGroup
 import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.withItems
 import com.wyty.callme.R
+import com.wyty.callme.commons.cache.Preference
 import com.wyty.callme.commons.fragmentation.SimpleFragment
+import com.wyty.callme.commons.utils.FirstLetterUtil
 import kotlinx.android.synthetic.main.fragment_contact.*
 import me.yokeyword.fragmentation.SupportFragment
 
@@ -24,17 +28,26 @@ class ContactFragment : SimpleFragment() {
     override fun initFragments() {
         var i = 0
         rec_contact.layoutManager = LinearLayoutManager(mActivity)
-        rec_contact.withItems{
-            contact(this@ContactFragment.mActivity, ContactBean("二大爷","12345678","",Color.parseColor(colors[i++%4])),'E',true)
-            repeat(4){
-                contact(this@ContactFragment.mActivity, ContactBean("二哥","12345678","",Color.parseColor(colors[i++%4])),'E',false)
+        ContactsLiveData.observe(this, Observer{ it ->
+            val list = ContactsLiveData.value.asSequence()
+                .sortedBy{ Selector(it.name) }
+                .toList()
+            rec_contact.withItems{
+                var oldChar = ';'
+                list.forEach {
+                    var newChar = FirstLetterUtil.getFirstLetter(it.name)[0]
+                    if (oldChar!=newChar) {
+                        contact(mActivity,it,newChar,true)
+                        oldChar = newChar
+                    } else {
+                        contact(mActivity,it,newChar,false)
+                    }
+                }
             }
-            contact(this@ContactFragment.mActivity, ContactBean("三大爷","12345678","",Color.parseColor(colors[i++%4])),'S',true)
-            repeat(4){
-                contact(this@ContactFragment.mActivity, ContactBean("三哥","12345678","",Color.parseColor(colors[i++%4])),'S',false)
-            }
-        }
+        })
+        ContactsLiveData.value = Preference.contacts
+
+
     }
 }
 
-fun MutableList<Item>.contact(context:Context,contactBean: ContactBean,firstLetter:Char,isFirst:Boolean)=add(ContactItem(context,isFirst,firstLetter,contactBean))
