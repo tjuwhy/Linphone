@@ -23,6 +23,8 @@
             android:name=".commons.App"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".onphone">
+        </activity>
         <activity android:name=".CallActivity">
         </activity>
         <activity android:name=".DialActivity">
