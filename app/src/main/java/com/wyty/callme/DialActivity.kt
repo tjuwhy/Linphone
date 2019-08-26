@@ -22,7 +22,7 @@ class DialActivity : AppCompatActivity() {
             val addr = core.interpretUrl(edit.text.toString())
             val param = core.createCallParams(null)
 
-            param.enableAudio(checkbox.isChecked)
+            param.enableVideo(checkbox.isChecked)
 
             if (addr!=null){
                 core.inviteAddressWithParams(addr,param)
