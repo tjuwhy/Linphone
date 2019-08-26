@@ -1,6 +1,7 @@
 package com.wyty.callme
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,20 +10,37 @@ import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
 import kotlinx.android.synthetic.main.activity_dial.*
 import kotlinx.android.synthetic.main.activity_home.*
+import org.linphone.core.Core
+import org.linphone.core.CoreListenerStub
+import org.linphone.core.ProxyConfig
+import org.linphone.core.RegistrationState
 import org.linphone.core.tools.Log
 import java.util.ArrayList
 
 class DialActivity : AppCompatActivity() {
 
+    lateinit var mCoreListener : CoreListenerStub
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dial)
+
+        mCoreListener = object : CoreListenerStub() {
+            override fun onRegistrationStateChanged(
+                core: Core,
+                cfg: ProxyConfig,
+                state: RegistrationState,
+                message: String
+            ) {
+
+            }
+        }
         btn.setOnClickListener {
             val core = LinphoneService.getCore()
             val addr = core.interpretUrl(edit.text.toString())
             val param = core.createCallParams(null)
 
-            param.enableAudio(checkbox.isChecked)
+            param.enableVideo(checkbox.isChecked)
 
             if (addr!=null){
                 core.inviteAddressWithParams(addr,param)
@@ -36,6 +54,31 @@ class DialActivity : AppCompatActivity() {
         super.onStart()
         checkAndRequestCallPermissions()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        // The best way to use Core listeners in Activities is to add them in onResume
+        // and to remove them in onPause
+        LinphoneService.getCore().addListener(mCoreListener)
+
+        // Manually update the LED registration state, in case it has been registered before
+        // we add a chance to register the above listener
+        val proxyConfig = LinphoneService.getCore().defaultProxyConfig
+        if (proxyConfig != null) {
+        } else {
+            // No account configured, we display the configuration activity
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        // Like I said above, remove unused Core listeners in onPause
+        LinphoneService.getCore().removeListener(mCoreListener)
+    }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>, grantResults: IntArray
