@@ -42,4 +42,6 @@ dependencies {
     implementation 'me.yokeyword:fragmentation:0.10.4'
     implementation 'com.android.support:design:28.0.0'
     implementation "org.linphone:linphone-sdk-android:4.2+"
+    implementation 'cn.edu.twt.retrox:recyclerviewdsl:1.1.0'
+    implementation 'com.orhanobut:hawk:2.0.1'
 }

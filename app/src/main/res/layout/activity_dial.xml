@@ -7,4 +7,32 @@
         android:layout_height="match_parent"
         tools:context=".DialActivity">
 
+    <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="callto:"/>
+
+    <EditText
+            android:id="@+id/edit" android:layout_width="200dp" android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginTop="20dp"/>
+
+    <CheckBox
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/checkbox"
+            app:layout_constraintBottom_toTopOf="@id/btn"
+            android:layout_width="wrap_content"
+              android:text="是否视频"
+              android:layout_height="wrap_content"/>
+    <Button
+            android:text="call"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/btn" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="100dp"/>
+
 </android.support.constraint.ConstraintLayout>

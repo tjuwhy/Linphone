@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.wyty.callme.commons.fragmentation.SimpleFragment
 import me.yokeyword.fragmentation.SupportFragment
 
 
@@ -16,15 +17,12 @@ import me.yokeyword.fragmentation.SupportFragment
  * A simple [Fragment] subclass.
  *
  */
-class QuickFragment : SupportFragment() {
+class QuickFragment : SimpleFragment() {
+    override val perMainFragmentLayoutId: Int
+        get() = R.layout.fragment_quick
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quick, container, false)
+    override fun initFragments() {
+
     }
-
 
 }

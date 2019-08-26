@@ -20,6 +20,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
+            android:name=".commons.App"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".CallActivity">
@@ -37,6 +38,7 @@
 
         <service
                 android:name=".commons.LinphoneService"
+                android:label="@string/app_name"
                 android:enabled="true"
                 android:exported="true">
         </service>

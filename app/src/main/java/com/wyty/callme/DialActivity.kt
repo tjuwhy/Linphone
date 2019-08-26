@@ -5,50 +5,31 @@ import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.commons.utils.SnackBarUtil
+import kotlinx.android.synthetic.main.activity_dial.*
 import kotlinx.android.synthetic.main.activity_home.*
-import org.linphone.core.Core
-import org.linphone.core.CoreListenerStub
-import org.linphone.core.ProxyConfig
-import org.linphone.core.RegistrationState
 import org.linphone.core.tools.Log
 import java.util.ArrayList
 
 class DialActivity : AppCompatActivity() {
 
-    lateinit var mCoreListener: CoreListenerStub
-    lateinit var callButton: Button
-    lateinit var mSipAddressToCall: EditText
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dial)
-
-        mCoreListener = object : CoreListenerStub() {
-            override fun onRegistrationStateChanged(
-                core: Core,
-                cfg: ProxyConfig,
-                state: RegistrationState,
-                message: String
-            ) {
-
-            }
-        }
-        callButton.setOnClickListener {
+        btn.setOnClickListener {
             val core = LinphoneService.getCore()
-            val addressToCall = core.interpretUrl(mSipAddressToCall.text.toString())
-            val params = core.createCallParams(null)
-            if (addressToCall != null) {
-                core.inviteAddressWithParams(addressToCall, params)
-            } else {
-                Toast.makeText(this, "地址不能为空", Toast.LENGTH_LONG).show()
+            val addr = core.interpretUrl(edit.text.toString())
+            val param = core.createCallParams(null)
 
+            param.enableAudio(checkbox.isChecked)
+
+            if (addr!=null){
+                core.inviteAddressWithParams(addr,param)
+            } else {
+                SnackBarUtil.error(this@DialActivity,"请检查对方地址是否输入正确")
             }
         }
-
     }
 
     override fun onStart() {
@@ -56,10 +37,21 @@ class DialActivity : AppCompatActivity() {
         checkAndRequestCallPermissions()
     }
 
-
-    override fun onPause() {
-        super.onPause()
-        LinphoneService.getCore().removeListener(mCoreListener)
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
+    ) {
+        // Callback for when permissions are asked to the user
+        for (i in permissions.indices) {
+            Log.i(
+                "[Permission] "
+                        + permissions[i]
+                        + " is "
+                        + if (grantResults[i] == PackageManager.PERMISSION_GRANTED)
+                    "granted"
+                else
+                    "denied"
+            )
+        }
     }
 
     private fun checkAndRequestCallPermissions() {
@@ -92,7 +84,7 @@ class DialActivity : AppCompatActivity() {
         }
 
         if (permissionsList.size > 0) {
-            var permissions : Array<String> = permissionsList.toTypedArray()
+            var permissions = permissionsList.toTypedArray()
             ActivityCompat.requestPermissions(this, permissions, 0)
         }
     }
