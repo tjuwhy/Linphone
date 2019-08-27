@@ -1,11 +1,9 @@
 package com.wyty.callme.contact
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -23,6 +21,23 @@ class ContactItem(val context: Context, val isFirst: Boolean, val firstLetter: C
             holder as ViewHolder
             item as ContactItem
             holder.apply {
+                itemView.setOnClickListener {
+                    val builder = AlertDialog.Builder(item.context)
+                    builder.apply {
+                        setTitle("您要拨打给 ${item.contactBean.name},请选择通话方式")
+                        setItems(arrayOf("语音通话", "视频通话")) { dialog, which ->
+                            when (which) {
+                                0 -> {
+                                }
+                                1 -> {
+
+                                }
+                                else -> { }
+                            }
+                        }
+                        show()
+                    }
+                }
                 itemView.setOnLongClickListener {
                     val builder = AlertDialog.Builder(item.context).also {
                         it.apply {
@@ -34,7 +49,7 @@ class ContactItem(val context: Context, val isFirst: Boolean, val firstLetter: C
                         }
                     }
                     builder.show()
-                    true
+                    false
                 }
                 if (item.isFirst) {
                     firstLetter.text = item.firstLetter.toString()

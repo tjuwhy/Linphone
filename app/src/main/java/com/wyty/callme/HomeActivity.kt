@@ -27,6 +27,7 @@ class HomeActivity : SupportActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setTabStatus(mShowingFragment)
+        window.statusBarColor = Color.parseColor("#FFFFFF")
 
         dial_fab.setOnClickListener {
             startActivity(Intent(this@HomeActivity,DialActivity::class.java))
