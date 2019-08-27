@@ -40,9 +40,7 @@
 
         <service
                 android:name=".commons.LinphoneService"
-                android:label="@string/app_name"
->
-        </service>
+                android:label="@string/app_name"/>
 
         <activity android:name=".LoginActivity">
         </activity>
