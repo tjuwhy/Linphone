@@ -9,7 +9,9 @@ import android.widget.TextView
 import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemController
 import com.wyty.callme.R
+import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.view.CircleImageView
+import kotlinx.android.synthetic.main.activity_dial.*
 import kotlinx.android.synthetic.main.item_history_record.view.*
 
 class HistoryItem(
@@ -25,6 +27,12 @@ class HistoryItem(
             item as HistoryItem
 
             holder.apply {
+                itemView.setOnClickListener {
+                    val core = LinphoneService.getCore()
+                    val param = core.createCallParams(null)
+                    param.enableVideo(false)
+                    core.inviteAddressWithParams(core.interpretUrl(item.callNum),param)
+                }
                 if (item.hasRecord) {
                     userCover.visibility = View.GONE
                     cirleImg.visibility = View.VISIBLE

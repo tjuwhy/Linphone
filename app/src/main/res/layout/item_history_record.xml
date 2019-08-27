@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"/>
 
     <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18dp"
             android:layout_marginStart="100dp"
             android:text="yangzhihang"
             android:textSize="16sp"
