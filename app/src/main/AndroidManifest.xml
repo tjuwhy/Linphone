@@ -23,6 +23,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".OnPhoneActivity">
+        </activity>
         <activity android:name=".contact.add_contact.AddContactActivity">
         </activity>
         <activity android:name=".CallActivity">
