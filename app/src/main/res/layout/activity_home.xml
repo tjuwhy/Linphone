@@ -5,16 +5,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
+        android:layout_marginTop="24dp"
         tools:context=".HomeActivity"
         android:background="#EDF0F0F0">
 
-    <android.support.design.widget.AppBarLayout
-            android:id="@+id/bar"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="#FFFFFF">
+    <android.support.v7.widget.Toolbar android:id="@+id/bar"
+                                       android:background="#FFFFFF"
+                                       app:layout_constraintTop_toTopOf="parent"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="56dp">
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -25,11 +24,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Call Me"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="#373737"
             />
 
@@ -58,7 +57,7 @@
                     app:layout_constraintTop_toTopOf="parent"
             />
         </android.support.constraint.ConstraintLayout>
-    </android.support.design.widget.AppBarLayout>
+    </android.support.v7.widget.Toolbar>
 
     <FrameLayout
             app:layout_constraintTop_toTopOf="parent"
@@ -96,6 +95,7 @@
             android:layout_height="60dp">
 
         <ImageView
+                android:background="@drawable/ripple"
                 android:id="@+id/tab_quick"
                 android:layout_width="36dp"
                 android:layout_height="30dp"
@@ -118,6 +118,7 @@
                 android:text="快速拨号"/>
 
         <ImageView
+                android:background="@drawable/ripple"
                 android:id="@+id/tab_history"
                 app:layout_constraintEnd_toStartOf="@id/tab_contact"
                 app:layout_constraintStart_toEndOf="@id/tab_quick"
@@ -142,6 +143,7 @@
                 android:text="通话记录"/>
 
         <ImageView
+                android:background="@drawable/ripple"
                 android:id="@+id/tab_contact"
                 android:layout_width="36dp"
                 android:layout_height="30dp"
@@ -162,7 +164,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tab_contact"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="通讯录"/>
-
 
     </android.support.constraint.ConstraintLayout>
 

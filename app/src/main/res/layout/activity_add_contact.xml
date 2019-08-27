@@ -7,13 +7,14 @@
         android:layout_height="match_parent"
         tools:context=".contact.add_contact.AddContactActivity">
 
-
-    <android.support.design.widget.AppBarLayout
+    <android.support.v7.widget.Toolbar
+            android:fitsSystemWindows="true"
             android:id="@+id/bar"
             android:background="#FFFFFF"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="56dp">
+
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -54,7 +55,11 @@
                     android:layout_height="48dp"/>
         </android.support.constraint.ConstraintLayout>
 
-    </android.support.design.widget.AppBarLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+
+
 
     <ImageView
             android:id="@+id/add_pic"
