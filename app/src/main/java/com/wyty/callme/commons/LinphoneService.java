@@ -11,6 +11,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 import com.wyty.callme.CallActivity;
+import com.wyty.callme.VideoActivity;
+import com.wyty.callme.VoiceActivity;
 import org.linphone.core.*;
 import org.linphone.core.tools.Log;
 import org.linphone.mediastream.Version;
@@ -74,18 +76,34 @@ public class LinphoneService extends Service {
             public void onCallStateChanged(Core core, Call call, Call.State state, String message) {
                 Log.d("call",state.toString()+"  "+message);
                 Toast.makeText(LinphoneService.this, message, Toast.LENGTH_SHORT).show();
-
+                CallParams params = getCore().createCallParams(call);
                 if (state == Call.State.IncomingReceived) {
                     Toast.makeText(LinphoneService.this, "Incoming call received, answering it automatically", Toast.LENGTH_LONG).show();
                     // For this sample we will automatically answer incoming calls
-                    CallParams params = getCore().createCallParams(call);
+
+                    if(params.videoEnabled())
                     params.enableVideo(true);
+                    else
+                    params.enableVideo(false);
                     call.acceptWithParams(params);
                 } else if (state == Call.State.Connected) {
-                    // This stats means the call has been established, let's start the call activity
-                    Intent intent = new Intent(LinphoneService.this, CallActivity.class);
-                    // As it is the Service that is starting the activity, we have to give this flag
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent;
+                    if(params.videoEnabled())
+                    {
+                        // This stats means the call has been established, let's start the call activity
+                         intent = new Intent(LinphoneService.this, VideoActivity.class);
+                        // As it is the Service that is starting the activity, we have to give this flag
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    }
+                    else
+                    {
+                        // This stats means the call has been established, let's start the call activity
+                         intent = new Intent(LinphoneService.this, VoiceActivity.class);
+                        // As it is the Service that is starting the activity, we have to give this flag
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    }
+
+
                     startActivity(intent);
                 }
             }
