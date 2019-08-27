@@ -43,4 +43,5 @@ dependencies {
     implementation "org.linphone:linphone-sdk-android:4.2+"
     implementation 'cn.edu.twt.retrox:recyclerviewdsl:1.1.0'
     implementation 'com.orhanobut:hawk:2.0.1'
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 }

@@ -8,6 +8,7 @@ import android.view.View
 import com.wyty.callme.contact.ContactBean
 import com.wyty.callme.contact.ContactFragment
 import com.wyty.callme.contact.ContactsLiveData
+import com.wyty.callme.contact.add_contact.AddContactActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.SupportFragment
@@ -21,7 +22,6 @@ class HomeActivity : SupportActivity() {
     private val THIRD = 2
     private var mShowingFragment = FIRST
     private var mHidingFragment = FIRST
-    private var mIsExit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,8 @@ class HomeActivity : SupportActivity() {
         }
 
         add_person.setOnClickListener {
-            ContactsLiveData.add(ContactBean("大舅","123","",0))
+            startActivity(Intent(this,AddContactActivity::class.java))
+//            ContactsLiveData.add(ContactBean("大舅","123","",0))
         }
         search.setOnClickListener {  }
 

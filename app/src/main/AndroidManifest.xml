@@ -15,14 +15,16 @@
             android:required="false"/>
 
     <application
+            android:name=".commons.App"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:name=".commons.App"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".contact.add_contact.AddContactActivity">
+        </activity>
         <activity android:name=".CallActivity">
         </activity>
         <activity android:name=".DialActivity">
@@ -32,6 +34,7 @@
         <activity android:name=".LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

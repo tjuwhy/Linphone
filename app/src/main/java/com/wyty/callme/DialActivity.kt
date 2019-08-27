@@ -3,19 +3,18 @@ package com.wyty.callme
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
 import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
 import kotlinx.android.synthetic.main.activity_dial.*
-import kotlinx.android.synthetic.main.activity_home.*
 import org.linphone.core.Core
 import org.linphone.core.CoreListenerStub
 import org.linphone.core.ProxyConfig
 import org.linphone.core.RegistrationState
 import org.linphone.core.tools.Log
-import java.util.ArrayList
+import java.util.*
 
 class DialActivity : AppCompatActivity() {
 
