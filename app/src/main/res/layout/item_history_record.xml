@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.wyty.callme.commons.view.CircleImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="30dp"
+            android:id="@+id/user_img"
+            />
+
+    <TextView
+            android:id="@+id/first_letter_avatar"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="@id/user_img"
+            app:layout_constraintTop_toTopOf="@id/user_img"
+            app:layout_constraintBottom_toBottomOf="@id/user_img"
+            app:layout_constraintEnd_toEndOf="@id/user_img"
+            android:text="大"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="30dp"
+            android:id="@+id/default_img"
+            android:src="@drawable/people_circle"
+        />
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="100dp"
+            android:text="yangzhihang"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:id="@+id/telnumber"
+            />
+
+    <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:layout_constraintLeft_toLeftOf="@+id/telnumber"
+            app:layout_constraintTop_toBottomOf="@+id/telnumber"
+            android:id="@+id/call_status"
+            android:layout_marginTop="6dp"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/call_status"
+            app:layout_constraintLeft_toRightOf="@+id/call_status"
+            android:layout_marginStart="12dp"
+            android:text="北京移动，上午 11：40"
+            android:textSize="12sp"
+            android:textColor="#aaaaaa"
+            android:id="@+id/history_time"
+
+            />
+
+    <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/more_if_grey"
+            android:id="@+id/more_if"
+
+            />
+
+
+
+</android.support.constraint.ConstraintLayout>

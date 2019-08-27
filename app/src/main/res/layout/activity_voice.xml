@@ -16,7 +16,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="正在呼叫" />
+            android:text="语音通话页面" />
     <TextView
             android:id="@+id/lianxiren"
             android:textColor="#ffffff"
@@ -37,12 +37,12 @@
     >
         <ImageView
                 app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/mianti_image"
+                android:id="@+id/jietong"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/mianti"
+                android:src="@drawable/jietong"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/jingying_image"
+                app:layout_constraintEnd_toEndOf="parent"
         />
         <TextView
 
@@ -51,56 +51,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mianti_text"
-                android:text="免提"
-                app:layout_constraintTop_toBottomOf="@+id/mianti_image"
-                app:layout_constraintStart_toStartOf="@+id/mianti_image"
-                app:layout_constraintEnd_toEndOf="@+id/mianti_image"
+                android:text="接通"
+                app:layout_constraintTop_toBottomOf="@+id/jietong"
+                app:layout_constraintStart_toStartOf="@+id/jietong"
+                app:layout_constraintEnd_toEndOf="@+id/jietong"
 
         />
 
 
-        <ImageView
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/jingying_image"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/maikefeng"
-                app:layout_constraintStart_toEndOf="@id/mianti_image"
-                app:layout_constraintEnd_toStartOf="@id/luying_image"
-        />
-        <TextView
-                android:textColor="#ffffff"
-                android:textSize="24dp"
-                android:text="静音"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/jingying_text"
-                app:layout_constraintTop_toBottomOf="@+id/jingying_image"
-                app:layout_constraintStart_toStartOf="@+id/jingying_image"
-                app:layout_constraintEnd_toEndOf="@+id/jingying_image"
 
-        />
-        <ImageView
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/luying_image"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/luying"
-                app:layout_constraintStart_toEndOf="@id/jingying_image"
-                app:layout_constraintEnd_toEndOf="parent"
-        />
-        <TextView
-                android:textColor="#ffffff"
-                android:textSize="24dp"
-                android:text="录音"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/luying_text"
-                app:layout_constraintTop_toBottomOf="@+id/luying_image"
-                app:layout_constraintStart_toStartOf="@+id/luying_image"
-                app:layout_constraintEnd_toEndOf="@+id/luying_image"
-
-        />
 
 
 
