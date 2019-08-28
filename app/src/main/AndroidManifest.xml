@@ -23,7 +23,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".contact.SearchActivity">
+        <activity android:name=".contact.search_contact.SearchActivity">
         </activity>
         <activity android:name=".contact.modify_contact.ModifyContactActivity">
         </activity>
