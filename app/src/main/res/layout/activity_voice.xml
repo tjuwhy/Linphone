@@ -223,7 +223,7 @@
         />
 
         <TextView
-                android:id="@+id/endphone_text"
+                android:id="@+id/on_terminate_text"
                 android:textColor="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
