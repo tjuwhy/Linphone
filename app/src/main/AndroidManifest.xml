@@ -27,11 +27,7 @@
         </activity>
         <activity android:name=".contact.modify_contact.ModifyContactActivity">
         </activity>
-        <activity android:name=".VideoActivity">
-        </activity>
         <activity android:name=".VoiceActivity">
-        </activity>
-        <activity android:name=".contact.VoiceActivity">
         </activity>
         <activity android:name=".OnPhoneActivity">
         </activity>
