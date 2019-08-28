@@ -2,6 +2,7 @@ package com.wyty.callme.contact
 
 import android.app.AlertDialog
 import android.content.Context
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemController
 import com.wyty.callme.R
+import com.wyty.callme.contact.detailed_info.DetailedInfoBottomSheet
 import kotlinx.android.synthetic.main.item_contact.view.*
 
 class ContactItem(val context: Context, val isFirst: Boolean, val firstLetter: Char, val contactBean: ContactBean) :
@@ -24,15 +26,17 @@ class ContactItem(val context: Context, val isFirst: Boolean, val firstLetter: C
                 itemView.setOnClickListener {
                     val builder = AlertDialog.Builder(item.context)
                     builder.apply {
-                        setTitle("您要拨打给 ${item.contactBean.name},请选择通话方式")
-                        setItems(arrayOf("语音通话", "视频通话")) { dialog, which ->
+                        setTitle(" ${item.contactBean.name},请选择通话方式")
+                        setItems(arrayOf("语音通话", "视频通话","编辑")) { dialog, which ->
                             when (which) {
                                 0 -> {
                                 }
                                 1 -> {
 
                                 }
-                                else -> { }
+                                2 -> {
+                                    DetailedInfoBottomSheet.showInfo( item.context as AppCompatActivity ,item.contactBean)
+                                }
                             }
                         }
                         show()
