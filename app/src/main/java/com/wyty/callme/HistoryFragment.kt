@@ -34,7 +34,6 @@ class HistoryFragment : SimpleFragment() {
                             addTime("今天")
                         } else if (((now.time / 86400000) - 1) == (it.startDate / 86400)) {
                             addTime("昨天")
-                            addTime("昨天")
                         } else {
                             addTime(transferLongToDate("MM月dd日", it.startDate * 1000))
                         }
@@ -49,7 +48,7 @@ class HistoryFragment : SimpleFragment() {
                     }
 
                     addHistory(miss,it.remoteAddress.username,
-                        transferLongToDate("E HH:mm", it.startDate * 1000),it.remoteAddress.username,dir)
+                        transferLongToDate("E HH:mm", it.startDate * 1000),it.remoteAddress.username,dir,this@HistoryFragment.context!!)
                     Log.d("callLogs", it.dir.toString())
                     Log.d("callLogs",it.fromAddress.username)
                     Log.d("callLogs",it.localAddress.username)

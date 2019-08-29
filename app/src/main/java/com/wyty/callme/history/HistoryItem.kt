@@ -1,18 +1,24 @@
 package com.wyty.callme.history
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.PopupWindow
 import android.widget.TextView
 import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemController
 import com.wyty.callme.R
 import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.view.CircleImageView
-import kotlinx.android.synthetic.main.activity_dial.*
+import com.wyty.callme.contact.add_contact.AddContactActivity
 import kotlinx.android.synthetic.main.item_history_record.view.*
 
 class HistoryItem(
@@ -20,7 +26,8 @@ class HistoryItem(
     val userName: String,
     val time: String,
     val callNum: String,
-    val status: Boolean
+    val status: Boolean,
+    val context: Context
 ) : Item {
     companion object Controller : ItemController {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: Item) {
@@ -54,6 +61,25 @@ class HistoryItem(
                     val view = LayoutInflater.from(holder.itemView.context).inflate(R.layout.item_pop,null,false)
                     val delete : TextView =  view.findViewById(R.id.delete_number)
                     val copy : TextView = view.findViewById(R.id.copy_number)
+                    val popup = PopupWindow(view,ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true)
+                    popup.animationStyle = R.anim.anim_pop
+                    popup.setTouchInterceptor { v, event ->
+                        false
+                    }
+                    popup.setBackgroundDrawable(ColorDrawable(0x00000000))    //要为popWindow设置一个背景才有效
+                    popup.showAsDropDown(it, -100, 0)
+                    delete.setOnClickListener {
+                        var intent = Intent(item.context,AddContactActivity::class.java)
+                        intent.putExtra("sip",item.callNum)
+                        item.context.startActivity(intent)
+                    }
+
+                    copy.setOnClickListener {
+                        val cmb: ClipboardManager = it.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        val mClipData = ClipData.newPlainText("Label", item.callNum)
+                        // 将ClipData内容放到系统剪贴板里。
+                        cmb.primaryClip = mClipData
+                    }
                 }
             }
 
@@ -99,5 +125,6 @@ fun MutableList<Item>.addHistory(
     userName: String,
     time: String,
     callNum: String,
-    status: Boolean
-) = add(HistoryItem(hasRecord, userName, time, callNum, status))
+    status: Boolean,
+    context: Context
+) = add(HistoryItem(hasRecord, userName, time, callNum, status,context))
