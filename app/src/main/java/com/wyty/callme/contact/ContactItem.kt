@@ -2,6 +2,8 @@ package com.wyty.callme.contact
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,9 @@ import android.widget.TextView
 import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemController
 import com.wyty.callme.R
+import com.wyty.callme.commons.Constants
+import com.wyty.callme.contact.detailed_info.DetailedInfoBottomSheet
+import com.wyty.callme.contact.modify_contact.ModifyContactActivity
 import kotlinx.android.synthetic.main.item_contact.view.*
 
 class ContactItem(val context: Context, val isFirst: Boolean, val firstLetter: Char, val contactBean: ContactBean) :
@@ -22,33 +27,43 @@ class ContactItem(val context: Context, val isFirst: Boolean, val firstLetter: C
             item as ContactItem
             holder.apply {
                 itemView.setOnClickListener {
+                    DetailedInfoBottomSheet.showInfo(
+                        item.context as AppCompatActivity,
+                        item.contactBean
+                    )
+                }
+                itemView.setOnLongClickListener {
                     val builder = AlertDialog.Builder(item.context)
                     builder.apply {
-                        setTitle("您要拨打给 ${item.contactBean.name},请选择通话方式")
-                        setItems(arrayOf("语音通话", "视频通话")) { dialog, which ->
+                        setTitle("请选择对联系人 ${item.contactBean.name} 的操作")
+                        setItems(arrayOf("语音通话", "视频通话", "编辑联系人", "删除联系人")) { dialog, which ->
                             when (which) {
                                 0 -> {
                                 }
                                 1 -> {
 
                                 }
-                                else -> { }
+                                2-> {
+                                    val intent = Intent(item.context, ModifyContactActivity::class.java)
+                                    intent.putExtra(Constants.CONTACT, item.contactBean.name)
+                                    item.context.startActivity(intent)
+                                }
+                                3 -> {
+                                    val builder = AlertDialog.Builder(item.context).also {
+                                        it.apply {
+                                            setTitle("确定要删除联系人 ${item.contactBean.name} 吗？")
+                                            setPositiveButton("确定") { _, _ ->
+                                                ContactsLiveData.remove(item.contactBean)
+                                            }
+                                            setNegativeButton("取消") { _, _ -> }
+                                        }
+                                    }
+                                    builder.show()
+                                }
                             }
                         }
                         show()
                     }
-                }
-                itemView.setOnLongClickListener {
-                    val builder = AlertDialog.Builder(item.context).also {
-                        it.apply {
-                            setTitle("确定要删除联系人 ${item.contactBean.name} 吗？")
-                            setPositiveButton("确定") { _, _ ->
-                                ContactsLiveData.remove(item.contactBean)
-                            }
-                            setNegativeButton("取消") { _, _ -> }
-                        }
-                    }
-                    builder.show()
                     false
                 }
                 if (item.isFirst) {

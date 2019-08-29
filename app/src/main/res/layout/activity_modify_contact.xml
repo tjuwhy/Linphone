@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".contact.modify_contact.ModifyContactActivity">
+
+
+    <android.support.v7.widget.Toolbar
+            android:fitsSystemWindows="true"
+            android:id="@+id/bar"
+            android:background="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ImageView
+
+                    android:background="@drawable/ripple"
+                    android:id="@+id/add_arr_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:padding="12dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"/>
+
+            <TextView
+                    app:layout_constraintStart_toEndOf="@id/add_arr_back"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#373737"
+                    android:textSize="20sp"
+                    android:text="修改联系人"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <ImageView
+                    android:background="@drawable/ripple"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:padding="12dp"
+                    android:src="@drawable/yes"
+                    android:id="@+id/add_confirm"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"/>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+
+
+    <ImageView
+            android:id="@+id/add_pic"
+            android:src="@drawable/background"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+            android:src="@drawable/ic_photo_camera_black_24dp"
+            app:backgroundTint="#FFFFFF"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/add_pic"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+            app:met_floatingLabelText="姓名"
+            app:met_floatingLabel="normal"
+            android:id="@+id/add_name"
+            android:hint="姓名"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="24dp"
+            app:met_autoValidate="true"
+            android:lines="1"
+            app:met_minCharacters="1"
+            android:theme="@style/MyEditText"
+            app:layout_constraintTop_toBottomOf="@id/add_pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+            app:met_floatingLabelText="号码"
+            app:met_floatingLabel="normal"
+            android:id="@+id/add_sip"
+            app:met_minCharacters="1"
+            android:hint="号码"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="8dp"
+            app:met_autoValidate="true"
+            android:theme="@style/MyEditText"
+            app:layout_constraintTop_toBottomOf="@id/add_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+            app:met_floatingLabelText="备注"
+            app:met_floatingLabel="normal"
+            android:id="@+id/add_comment"
+            android:hint="备注"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/add_sip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+</android.support.constraint.ConstraintLayout>

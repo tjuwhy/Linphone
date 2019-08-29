@@ -1,3 +1,4 @@
 <resources>
+    <string name="view_pager_bottom_sheet_behavior" translatable="false">com.wyty.callme.commons.vbps.ViewPagerBottomSheetBehavior</string>
     <string name="app_name">CallMe</string>
 </resources>

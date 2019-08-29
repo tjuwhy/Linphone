@@ -6,7 +6,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 object Preference{
-    var contacts : List<ContactBean> by hawk("contacts", mutableListOf(ContactBean("一哥","123","",0),ContactBean("大姐","123","",0),ContactBean("表哥","123","",0),ContactBean("李四","123","",0),ContactBean("Bernardo Silva","123","",0)))
+    var contacts : Set<ContactBean> by hawk("contacts", mutableSetOf(ContactBean("一哥","123","",0),ContactBean("大姐","123","",0),ContactBean("表哥","123","",0),ContactBean("李四","123","",0),ContactBean("Bernardo Silva","123","",0)))
 }
 
 fun <T> hawk(key: String, default: T) = object : ReadWriteProperty<Any?, T> {

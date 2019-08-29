@@ -11,4 +11,9 @@
             android:layout_height="match_parent"
             android:text="quick_fragment"/>
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="1000dp"
+        android:background="#123456"/>
+
 </FrameLayout>

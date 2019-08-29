@@ -5,9 +5,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import com.wyty.callme.contact.ContactBean
 import com.wyty.callme.contact.ContactFragment
-import com.wyty.callme.contact.ContactsLiveData
 import com.wyty.callme.contact.add_contact.AddContactActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import me.yokeyword.fragmentation.SupportActivity
@@ -15,8 +13,10 @@ import me.yokeyword.fragmentation.SupportFragment
 
 class HomeActivity : SupportActivity() {
     private val fragments = arrayOfNulls<SupportFragment>(3)
-    private val resourcesLight = arrayOf(R.drawable.home_quick_light, R.drawable.home_history_light, R.drawable.home_contact_light)
-    private val resourcesDark = arrayOf(R.drawable.home_quick_dark, R.drawable.home_history_dark, R.drawable.home_contact_dark)
+    private val resourcesLight =
+        arrayOf(R.drawable.home_quick_light, R.drawable.home_history_light, R.drawable.home_contact_light)
+    private val resourcesDark =
+        arrayOf(R.drawable.home_quick_dark, R.drawable.home_history_dark, R.drawable.home_contact_dark)
     private val FIRST = 0
     private val SECOND = 1
     private val THIRD = 2
@@ -29,15 +29,6 @@ class HomeActivity : SupportActivity() {
         setTabStatus(mShowingFragment)
         window.statusBarColor = Color.parseColor("#FFFFFF")
 
-        dial_fab.setOnClickListener {
-            startActivity(Intent(this@HomeActivity,DialActivity::class.java))
-        }
-
-        add_person.setOnClickListener {
-            startActivity(Intent(this,AddContactActivity::class.java))
-//            ContactsLiveData.add(ContactBean("大舅","123","",0))
-        }
-        search.setOnClickListener {  }
 
         if (savedInstanceState == null) {
             fragments[FIRST] = QuickFragment()
@@ -49,6 +40,16 @@ class HomeActivity : SupportActivity() {
             fragments[SECOND] = findFragment(HistoryFragment::class.java)
             fragments[THIRD] = findFragment(ContactFragment::class.java)
         }
+
+        dial_fab.setOnClickListener {
+            startActivity(Intent(this@HomeActivity, DialActivity::class.java))
+        }
+
+        add_person.setOnClickListener {
+            startActivity(Intent(this, AddContactActivity::class.java))
+//            ContactsLiveData.add(ContactBean("大舅","123","",0))
+        }
+        search.setOnClickListener { }
         tab_quick.setOnClickListener {
             setTabStatus(FIRST)
             mShowingFragment = FIRST
@@ -69,6 +70,7 @@ class HomeActivity : SupportActivity() {
         }
         tab_quick.post {
             clearFullScreen()
+            loadFragment()
         }
 
     }
@@ -82,7 +84,8 @@ class HomeActivity : SupportActivity() {
             decorView.systemUiVisibility = option
             // 状态栏反色
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                this.window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             }
             window.statusBarColor = Color.WHITE
         }
