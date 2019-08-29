@@ -1,5 +1,6 @@
 package com.wyty.callme.history
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_dial.*
 import kotlinx.android.synthetic.main.item_history_record.view.*
 
 class HistoryItem(
-    val hasRecord: Boolean,
+    val miss: Boolean,
     val userName: String,
     val time: String,
     val callNum: String,
@@ -33,10 +34,13 @@ class HistoryItem(
                     param.enableVideo(false)
                     core.inviteAddressWithParams(core.interpretUrl(item.callNum),param)
                 }
-                if (item.hasRecord) {
-                    userCover.visibility = View.GONE
-                    cirleImg.visibility = View.VISIBLE
-                    first.visibility = View.VISIBLE
+//                if (item.hasRecord) {
+//                    userCover.visibility = View.GONE
+//                    cirleImg.visibility = View.VISIBLE
+//                    first.visibility = View.VISIBLE
+//                }
+                if (item.miss){
+                    callNum.setTextColor(Color.RED)
                 }
                 first.text = item.userName.subSequence(0, 1)
                 callNum.text = item.callNum
@@ -46,7 +50,11 @@ class HistoryItem(
                     callStatus.setImageResource(R.drawable.phone_receive)
                 }
                 time.text = item.time
-                more.setOnClickListener { }
+                more.setOnClickListener {
+                    val view = LayoutInflater.from(holder.itemView.context).inflate(R.layout.item_pop,null,false)
+                    val delete : TextView =  view.findViewById(R.id.delete_number)
+                    val copy : TextView = view.findViewById(R.id.copy_number)
+                }
             }
 
         }
