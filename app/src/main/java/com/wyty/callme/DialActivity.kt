@@ -6,8 +6,10 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.StaggeredGridLayoutManager
 import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
+import com.wyty.callme.dial.DialNumAdapter
 import kotlinx.android.synthetic.main.activity_dial.*
 import org.linphone.core.Core
 import org.linphone.core.CoreListenerStub
@@ -19,10 +21,21 @@ import java.util.*
 class DialActivity : AppCompatActivity() {
 
     lateinit var mCoreListener : CoreListenerStub
+    private var phoneNumber: MutableList<String> = mutableListOf<String>()
+    private lateinit var adapter: DialNumAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dial)
+        edit.isFocusable = true
+        edit.isFocusableInTouchMode = true
+        edit.requestFocus()
+        edit.setSelection(edit.length())
+
+        initValues()
+        adapter = DialNumAdapter(phoneNumber, this@DialActivity)
+        rv_numpad.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        rv_numpad.adapter = adapter
 
         mCoreListener = object : CoreListenerStub() {
             override fun onRegistrationStateChanged(
@@ -35,17 +48,7 @@ class DialActivity : AppCompatActivity() {
             }
         }
         btn.setOnClickListener {
-            val core = LinphoneService.getCore()
-            val addr = core.interpretUrl(edit.text.toString())
-            val param = core.createCallParams(null)
-
-            param.enableVideo(checkbox.isChecked)
-
-            if (addr!=null){
-                core.inviteAddressWithParams(addr,param)
-            } else {
-                SnackBarUtil.error(this@DialActivity,"请检查对方地址是否输入正确")
-            }
+            StartCall.startVideoCall(this,edit.text.toString())
         }
     }
 
@@ -129,5 +132,19 @@ class DialActivity : AppCompatActivity() {
             var permissions = permissionsList.toTypedArray()
             ActivityCompat.requestPermissions(this, permissions, 0)
         }
+    }
+
+
+    fun addContent(string: String) {
+        edit.setText("${edit.text}$string")
+    }
+
+    public fun initValues() {
+        for (i in 1..9) {
+            phoneNumber.add(i.toString())
+        }
+        phoneNumber.add("*")
+        phoneNumber.add("0")
+        phoneNumber.add("#")
     }
 }
