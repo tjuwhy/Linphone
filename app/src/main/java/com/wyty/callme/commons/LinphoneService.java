@@ -80,7 +80,10 @@ public class LinphoneService extends Service {
                 if (state == Call.State.IncomingReceived) {
                     Toast.makeText(LinphoneService.this, "Incoming call received, answering it automatically", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LinphoneService.this, VoiceActivity.class);
+
                     intent.putExtra(CALL, call.getRemoteParams().videoEnabled());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+
                     LinphoneService.this.startActivity(intent);
                     // For this sample we will automatically answer incoming calls
                 }
