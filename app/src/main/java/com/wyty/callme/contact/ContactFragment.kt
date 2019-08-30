@@ -1,22 +1,14 @@
 package com.wyty.callme.contact
 
 import android.arch.lifecycle.Observer
-import android.content.Context
-import android.graphics.Color
-import android.os.Bundle
-import android.provider.ContactsContract
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.withItems
 import com.wyty.callme.R
+import com.wyty.callme.commons.Selector
 import com.wyty.callme.commons.cache.Preference
 import com.wyty.callme.commons.fragmentation.SimpleFragment
 import com.wyty.callme.commons.utils.FirstLetterUtil
 import kotlinx.android.synthetic.main.fragment_contact.*
-import me.yokeyword.fragmentation.SupportFragment
 
 
 class ContactFragment : SimpleFragment() {

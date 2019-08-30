@@ -1,10 +1,12 @@
 package com.wyty.callme
 
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.commons.view.enableLightStatusBarMode
 
 class LauncherActivity : AppCompatActivity() {
     private lateinit var mHandler: Handler
@@ -15,6 +17,8 @@ class LauncherActivity : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
+        window.statusBarColor = Color.parseColor("#FFFFFF")
+        enableLightStatusBarMode(true)
 
         // Check whether the Service is already running
         if (LinphoneService.isReady()) {
