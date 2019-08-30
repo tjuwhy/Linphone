@@ -9,6 +9,7 @@
         tools:context=".HomeActivity"
         android:background="#EDF0F0F0">
 
+
     <android.support.v7.widget.Toolbar android:id="@+id/bar"
                                        android:background="#FFFFFF"
                                        app:layout_constraintTop_toTopOf="parent"

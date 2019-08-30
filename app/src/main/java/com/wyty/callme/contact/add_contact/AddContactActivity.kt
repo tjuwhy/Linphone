@@ -21,7 +21,6 @@ class AddContactActivity : AppCompatActivity() {
         }
         window.statusBarColor = Color.parseColor("#FFFFFF")
         enableLightStatusBarMode(true)
-        add_sip.setText(this.intent.getStringExtra("sip").toString())
         add_confirm.setOnClickListener {
             val name = add_name.text.toString()
             val sip = add_sip.text.toString()
