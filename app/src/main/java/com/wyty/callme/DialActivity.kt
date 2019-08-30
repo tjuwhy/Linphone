@@ -5,8 +5,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.widget.Toast
 import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
 import com.wyty.callme.dial.DialNumAdapter
@@ -48,7 +50,36 @@ class DialActivity : AppCompatActivity() {
             }
         }
         btn.setOnClickListener {
-            StartCall.startVideoCall(this,edit.text.toString())
+            val items = arrayOf("视频通话", "音频通话")
+            var choice = -1
+            val singleChoiceDialog = AlertDialog.Builder(this@DialActivity)
+            singleChoiceDialog.apply {
+                setTitle("请选择服务")
+                setSingleChoiceItems(items, -1) { _, which ->
+                    choice = which
+                }
+            }
+            singleChoiceDialog.setPositiveButton("确定") { _, _ ->
+                if (choice !== -1) {
+                    Toast.makeText(this@DialActivity,
+                        "你选择了" + items[choice],
+                        Toast.LENGTH_SHORT).show()
+                    if (choice == 0) {
+                        StartCall.startVideoCall(this,edit.text.toString())
+
+                    } else {
+                        StartCall.startVoiceCall(this,edit.text.toString())
+                    }
+                } else {
+                    SnackBarUtil.error(this, "请选择服务")
+                }
+                var intent = Intent(this,VoiceActivity::class.java)
+                intent.putExtra("flag",true)
+                startActivity(intent)
+            }
+            singleChoiceDialog.show()
+
+
         }
     }
 

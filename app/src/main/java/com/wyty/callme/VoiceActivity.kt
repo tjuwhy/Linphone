@@ -44,6 +44,12 @@ class VoiceActivity : AppCompatActivity() {
                 }
             }
         }
+        val flag = this.intent.getBooleanExtra("flag",false)
+        if (flag){
+            voice_connect.visibility = View.GONE
+            voice_connect_text.visibility = View.GONE
+
+        }
         voice_connect.setOnClickListener {
             val cores = LinphoneService.getCore()
             if (cores.callsNb > 0) {

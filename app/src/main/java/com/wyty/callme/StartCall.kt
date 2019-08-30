@@ -1,11 +1,8 @@
 package com.wyty.callme
 
 import android.app.Activity
-import android.content.Context
 import com.wyty.callme.commons.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
-import kotlinx.android.synthetic.main.activity_dial.*
-
 object StartCall {
 
     fun startVideoCall(activity: Activity,sip : String) {
