@@ -1,17 +1,17 @@
 package com.wyty.callme.contact.search_contact
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.TokenWatcher
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import cn.edu.twt.retrox.recyclerviewdsl.withItems
 import com.wyty.callme.R
 import com.wyty.callme.commons.cache.Preference
-import com.wyty.callme.contact.Selector
+import com.wyty.callme.commons.Selector
+import com.wyty.callme.commons.view.enableLightStatusBarMode
 import com.wyty.callme.contact.contact
-import kotlinx.android.synthetic.main.activity_dial.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
@@ -22,6 +22,8 @@ class SearchActivity : AppCompatActivity() {
         icon_back.setOnClickListener {
             onBackPressed()
         }
+        enableLightStatusBarMode(true)
+        window.statusBarColor = Color.parseColor("#FFFFFF")
         rec_search_contact.layoutManager=LinearLayoutManager(this)
         search_edit.addTextChangedListener(object :TextWatcher{
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
