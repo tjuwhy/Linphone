@@ -47,7 +47,6 @@ class VoiceActivity : AppCompatActivity() {
         val flag = this.intent.getBooleanExtra("flag",false)
         if (flag){
             voice_connect.visibility = View.GONE
-            voice_connect_text.visibility = View.GONE
 
         }
         voice_connect.setOnClickListener {
@@ -58,7 +57,7 @@ class VoiceActivity : AppCompatActivity() {
                     call = cores.calls[0]
                 }
                 val params = LinphoneService.getCore().createCallParams(call)
-                params.enableVideo(false);
+                params.enableVideo(false)
                 call?.acceptWithParams(params)///jieting
 
             }
