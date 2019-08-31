@@ -4,7 +4,7 @@ import android.arch.lifecycle.Observer
 import android.support.v7.widget.LinearLayoutManager
 import cn.edu.twt.retrox.recyclerviewdsl.withItems
 import com.wyty.callme.R
-import com.wyty.callme.commons.Selector
+import com.wyty.callme.commons.utils.Selector
 import com.wyty.callme.commons.cache.Preference
 import com.wyty.callme.commons.fragmentation.SimpleFragment
 import com.wyty.callme.commons.utils.FirstLetterUtil

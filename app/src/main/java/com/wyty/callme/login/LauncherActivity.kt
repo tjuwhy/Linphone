@@ -1,11 +1,12 @@
-package com.wyty.callme
+package com.wyty.callme.login
 
 import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.R
+import com.wyty.callme.commons.core.LinphoneService
 import com.wyty.callme.commons.view.enableLightStatusBarMode
 
 class LauncherActivity : AppCompatActivity() {
@@ -21,12 +22,12 @@ class LauncherActivity : AppCompatActivity() {
         enableLightStatusBarMode(true)
 
         // Check whether the Service is already running
-        if (LinphoneService.isReady()) {
+        if (com.wyty.callme.commons.core.LinphoneService.isReady()) {
             onServiceReady()
         } else {
             // If it's not, let's start it
             startService(
-                Intent().setClass(this, LinphoneService::class.java)
+                Intent().setClass(this, com.wyty.callme.commons.core.LinphoneService::class.java)
             )
             // And wait for it to be ready, so we can safely use it afterwards
             ServiceWaitThread().start()
@@ -50,7 +51,7 @@ class LauncherActivity : AppCompatActivity() {
     // This thread will periodically check if the Service is ready, and then call onServiceReady
     private inner class ServiceWaitThread : Thread() {
         override fun run() {
-            while (!LinphoneService.isReady()) {
+            while (!com.wyty.callme.commons.core.LinphoneService.isReady()) {
                 try {
                     sleep(30)
                 } catch (e: InterruptedException) {

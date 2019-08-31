@@ -9,9 +9,10 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.widget.Toast
-import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.commons.core.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
 import com.wyty.callme.dial.DialNumAdapter
+import com.wyty.callme.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_dial.*
 import org.linphone.core.Core
 import org.linphone.core.CoreListenerStub
@@ -93,11 +94,11 @@ class DialActivity : AppCompatActivity() {
 
         // The best way to use Core listeners in Activities is to add them in onResume
         // and to remove them in onPause
-        LinphoneService.getCore().addListener(mCoreListener)
+        com.wyty.callme.commons.core.LinphoneService.getCore().addListener(mCoreListener)
 
         // Manually update the LED registration state, in case it has been registered before
         // we add a chance to register the above listener
-        val proxyConfig = LinphoneService.getCore().defaultProxyConfig
+        val proxyConfig = com.wyty.callme.commons.core.LinphoneService.getCore().defaultProxyConfig
         if (proxyConfig != null) {
         } else {
             // No account configured, we display the configuration activity
@@ -109,7 +110,7 @@ class DialActivity : AppCompatActivity() {
         super.onPause()
 
         // Like I said above, remove unused Core listeners in onPause
-        LinphoneService.getCore().removeListener(mCoreListener)
+        com.wyty.callme.commons.core.LinphoneService.getCore().removeListener(mCoreListener)
     }
 
 

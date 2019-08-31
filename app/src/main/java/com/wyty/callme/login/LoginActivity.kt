@@ -1,11 +1,13 @@
-package com.wyty.callme
+package com.wyty.callme.login
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.HomeActivity
+import com.wyty.callme.R
+import com.wyty.callme.commons.core.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
 import com.wyty.callme.commons.view.enableLightStatusBarMode
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         enableLightStatusBarMode(true)
         window.statusBarColor = Color.parseColor("#FFFFFF")
-        mAccountCreator = LinphoneService.getCore().createAccountCreator(null)
+        mAccountCreator = com.wyty.callme.commons.core.LinphoneService.getCore().createAccountCreator(null)
 
         mCoreListener= object : CoreListenerStub(){
             override fun onRegistrationStateChanged(
@@ -33,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.i("cstate",cstate.toString() + "  " + message)
                 when (cstate) {
                     RegistrationState.Ok->{
-                        startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
+                        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     }
                     RegistrationState.Failed -> {
                         SnackBarUtil.error(this@LoginActivity,message.orEmpty())
@@ -54,13 +56,13 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        LinphoneService.getCore().addListener(mCoreListener)
+        com.wyty.callme.commons.core.LinphoneService.getCore().addListener(mCoreListener)
 
     }
 
     override fun onPause() {
         super.onPause()
-        LinphoneService.getCore().removeListener(mCoreListener)
+        com.wyty.callme.commons.core.LinphoneService.getCore().removeListener(mCoreListener)
     }
 
     private fun configureAccount(){
@@ -88,6 +90,6 @@ class LoginActivity : AppCompatActivity() {
         // This will automatically create the proxy config and auth info and add them to the Core
         val cfg = mAccountCreator.createProxyConfig()
         // Make sure the newly created one is the default
-        LinphoneService.getCore().defaultProxyConfig = cfg
+        com.wyty.callme.commons.core.LinphoneService.getCore().defaultProxyConfig = cfg
     }
 }

@@ -7,9 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.view.View
-import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.commons.core.LinphoneService
 import com.wyty.callme.commons.Constants.CALL
-import com.wyty.callme.commons.utils.SnackBarUtil
 import kotlinx.android.synthetic.main.activity_voice.*
 import org.linphone.core.Call
 import org.linphone.core.Core
@@ -24,7 +23,7 @@ class VoiceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voice)
-        val core = LinphoneService.getCore()
+        val core = com.wyty.callme.commons.core.LinphoneService.getCore()
         val videoEnabled = intent.getBooleanExtra(CALL, false)
         mCoreListener = object : CoreListenerStub() {
             override fun onCallStateChanged(
@@ -50,13 +49,13 @@ class VoiceActivity : AppCompatActivity() {
 
         }
         voice_connect.setOnClickListener {
-            val cores = LinphoneService.getCore()
+            val cores = com.wyty.callme.commons.core.LinphoneService.getCore()
             if (cores.callsNb > 0) {
                 var call: Call? = cores.currentCall
                 if (call == null) {
                     call = cores.calls[0]
                 }
-                val params = LinphoneService.getCore().createCallParams(call)
+                val params = com.wyty.callme.commons.core.LinphoneService.getCore().createCallParams(call)
                 params.enableVideo(false)
                 call?.acceptWithParams(params)///jieting
 
@@ -64,7 +63,7 @@ class VoiceActivity : AppCompatActivity() {
 
         }
         voice_terminate.setOnClickListener {
-            val cores = LinphoneService.getCore()
+            val cores = com.wyty.callme.commons.core.LinphoneService.getCore()
             if (cores.callsNb > 0) {
                 var call: Call? = cores.currentCall
                 if (call == null) {
@@ -75,7 +74,7 @@ class VoiceActivity : AppCompatActivity() {
             finish()
         }
         on_terminate.setOnClickListener {
-            val cores = LinphoneService.getCore()
+            val cores = com.wyty.callme.commons.core.LinphoneService.getCore()
             if (cores.callsNb > 0) {
                 var call: Call? = cores.currentCall
                 if (call == null) {
@@ -90,11 +89,11 @@ class VoiceActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        LinphoneService.getCore().addListener(mCoreListener)
+        com.wyty.callme.commons.core.LinphoneService.getCore().addListener(mCoreListener)
     }
 
     override fun onPause() {
-        LinphoneService.getCore().removeListener(mCoreListener)
+        com.wyty.callme.commons.core.LinphoneService.getCore().removeListener(mCoreListener)
         super.onPause()
     }
 

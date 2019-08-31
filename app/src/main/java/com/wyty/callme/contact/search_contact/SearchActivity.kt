@@ -9,7 +9,7 @@ import android.text.TextWatcher
 import cn.edu.twt.retrox.recyclerviewdsl.withItems
 import com.wyty.callme.R
 import com.wyty.callme.commons.cache.Preference
-import com.wyty.callme.commons.Selector
+import com.wyty.callme.commons.utils.Selector
 import com.wyty.callme.commons.view.enableLightStatusBarMode
 import com.wyty.callme.contact.contact
 import kotlinx.android.synthetic.main.activity_search.*

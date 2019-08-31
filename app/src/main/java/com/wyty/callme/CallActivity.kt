@@ -9,7 +9,7 @@ import android.support.annotation.RequiresApi
 import android.util.DisplayMetrics
 import android.view.TextureView
 import android.widget.RelativeLayout
-import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.commons.core.LinphoneService
 import kotlinx.android.synthetic.main.activity_call.*
 import org.linphone.core.Call
 import org.linphone.core.Core
@@ -28,7 +28,7 @@ class CallActivity : AppCompatActivity() {
         setContentView(R.layout.activity_call)
         mVideoView = videoSurface
         mCaptureView = videoCaptureSurface
-        val core = LinphoneService.getCore()
+        val core = com.wyty.callme.commons.core.LinphoneService.getCore()
         core.setNativeVideoWindowId(mVideoView)
         core.setNativePreviewWindowId(mCaptureView)
         mCoreListener = object : CoreListenerStub() {
@@ -45,7 +45,7 @@ class CallActivity : AppCompatActivity() {
         }
 
         terminate_call.setOnClickListener {
-            val cores = LinphoneService.getCore()
+            val cores = com.wyty.callme.commons.core.LinphoneService.getCore()
             if (cores.callsNb > 0) {
                 var call: Call? = cores.currentCall
                 if (call == null) {
@@ -58,13 +58,13 @@ class CallActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        LinphoneService.getCore().addListener(mCoreListener)
+        com.wyty.callme.commons.core.LinphoneService.getCore().addListener(mCoreListener)
         resizePreview()
     }
 
 
     override fun onPause() {
-        LinphoneService.getCore().removeListener(mCoreListener)
+        com.wyty.callme.commons.core.LinphoneService.getCore().removeListener(mCoreListener)
         super.onPause()
     }
 
@@ -92,7 +92,7 @@ class CallActivity : AppCompatActivity() {
 
 
     private fun resizePreview() {
-        val core = LinphoneService.getCore()
+        val core = com.wyty.callme.commons.core.LinphoneService.getCore()
         if (core.callsNb > 0) {
             var call: Call? = core.currentCall
             if (call == null) {

@@ -1,13 +1,13 @@
 package com.wyty.callme
 
 import android.app.Activity
-import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.commons.core.LinphoneService
 import com.wyty.callme.commons.utils.SnackBarUtil
 object StartCall {
 
     fun startVideoCall(activity: Activity,sip : String) {
 
-        val core = LinphoneService.getCore()
+        val core = com.wyty.callme.commons.core.LinphoneService.getCore()
         val addr = core.interpretUrl(sip)
         val param = core.createCallParams(null)
 
@@ -23,7 +23,7 @@ object StartCall {
 
 
     fun startVoiceCall(activity: Activity,sip : String) {
-        val core = LinphoneService.getCore()
+        val core = com.wyty.callme.commons.core.LinphoneService.getCore()
         val addr = core.interpretUrl(sip)
         val param = core.createCallParams(null)
 

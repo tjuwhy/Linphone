@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import cn.edu.twt.retrox.recyclerviewdsl.withItems
-import com.wyty.callme.commons.LinphoneService
+import com.wyty.callme.commons.core.LinphoneService
 import com.wyty.callme.commons.fragmentation.SimpleFragment
 import com.wyty.callme.history.addHistory
 import com.wyty.callme.history.addTime
@@ -19,7 +19,7 @@ class HistoryFragment : SimpleFragment() {
     override fun initFragments() {
         rec_history.layoutManager = LinearLayoutManager(mActivity)
 
-        val core = LinphoneService.getCore()
+        val core = com.wyty.callme.commons.core.LinphoneService.getCore()
         Log.d("callLogs", core.callLogs.size.toString())
 
         val callLogsLiveData = MutableLiveData<List<CallLog>>()
